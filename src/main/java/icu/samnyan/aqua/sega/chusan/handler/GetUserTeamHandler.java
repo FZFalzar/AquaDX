@@ -25,7 +25,8 @@ public class GetUserTeamHandler implements BaseHandler {
     public GetUserTeamHandler(StringMapper mapper, @Value("${game.chusan.team-name:#{null}}") String teamName) {
         this.mapper = mapper;
         // Decode team name because Java assumes application.properties as ISO-8859-1
-        this.teamName = new String(teamName.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+        if(teamName == null) this.teamName = "== NO TEAM ==";
+        else this.teamName = new String(teamName.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
     }
 
     @Override
